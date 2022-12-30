@@ -6,6 +6,22 @@ import styles from '../styles/Home.module.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const test =  () => {
+    let url = "/api/pdfprinter"
+    fetch(url).then((response) => {
+      var winparams = 'dependent=yes,locationbar=no,scrollbars=yes,menubar=yes,' +
+      'resizable,screenX=50,screenY=50,width=1920,height=1050';
+  
+    var htmlPop = '<iframe id="fred" style="border:1px solid #666CCC" title="tour itinerary" src="' +
+    url + '" frameborder="1" scrolling="auto" height="1100" width="1024" ></iframe>'
+  
+    console.log(response)
+    var printWindow = window.open(url, "PDF", winparams);
+    printWindow.document.write(response.body);
+     
+    })
+
+  }
   return (
     <>
       <Head>
@@ -116,6 +132,7 @@ export default function Home() {
               with&nbsp;Vercel.
             </p>
           </a>
+          <button onClick={test}>test</button>
         </div>
       </main>
     </>
